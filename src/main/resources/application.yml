@@ -1,0 +1,69 @@
+server:
+  port: 8081
+  tomcat:
+      accesslog:
+          enabled: false
+      accept-count: 2000
+      uri-encoding: utf-8
+
+management:
+    port: 8081
+    security:
+        enabled: false
+
+eureka:
+    client:
+        enabled: false
+#        service-url:
+#            defaultZone: http://localhost:8761/eureka
+    instance:
+        preferIpAddress: false
+
+spring:
+    datasource:
+        druid:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://127.0.0.1:3306/cms?useUnicode=true&amp;characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+            username: root
+            password:
+            initial-size: 3
+            max-active: 20
+            min-idle: 5
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/cms?maxPoolSize=10&w=1
+    application:
+        name: demo
+    jackson:
+        serialization:
+            indent_output: true
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    sleuth:
+        web:
+            enabled: true
+        sampler:
+          percentage: 1
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers: 172.25.5.129,172.25.5.130,172.25.5.131
+                    zkNodes: 172.25.5.116,172.25.5.117,172.25.5.118
+                    autoAddPartitions: true
+                    minPartitionCount: 1
+            bindings:
+                sleuth:
+                    destination: sleuth-test
+#                    producer:
+#                        partitionCount: 3
+#            instance-index: 0
+#            instance-count: 3
+
+endpoints:
+    health:
+        enabled: true
+        sensitive: false

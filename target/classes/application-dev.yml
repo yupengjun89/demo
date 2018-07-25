@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  tomcat:
+      accesslog:
+          enabled: false
+      accept-count: 2000
+      uri-encoding: utf-8
+
+management:
+    port: 8080
+    security:
+        enabled: false
+
+eureka:
+    client:
+        enabled: false
+    instance:
+        preferIpAddress: false
+
+spring:
+    datasource:
+        druid:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://127.0.0.1:3306/cms?useUnicode=true&amp;characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+            username: root
+            password:
+            initial-size: 3
+            max-active: 20
+            min-idle: 5
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/cms?maxPoolSize=10&w=1
+    application:
+        name: demo
+    jackson:
+        serialization:
+            indent_output: true
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+            
+endpoints:
+    health:
+        enabled: true
+        sensitive: false
+
